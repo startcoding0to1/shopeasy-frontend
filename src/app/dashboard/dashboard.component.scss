@@ -1,0 +1,11 @@
+.container-fluid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto; //allow horizontal scrolling
+    overflow-y: hidden; //hides the verticle
+}
+/* Hide scrollbar for webkit-based browsers(like Chrome,Safari) */
+.container-fluid::-webkit-scrollbar {
+    display: none;
+}

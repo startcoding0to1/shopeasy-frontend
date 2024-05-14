@@ -1,0 +1,109 @@
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    bottom: 60%;
+    /* Adjust the percentage value as needed */
+
+}
+
+.fa-chevron-left,
+.fa-chevron-right {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(118, 78, 2);
+}
+
+/* Category section */
+.category-section{
+    margin-top: -22.65%;
+    padding: 0 30px;
+}
+.category-section .card{
+    border: 0;
+    border-radius: 0;
+    width: 340px;
+    height: 400px;
+}
+
+.category-section .card .card-body{
+    width: 100%;
+    
+}
+
+.category-section .category{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.category-section img{
+    width: 150px;
+    height: auto;
+    padding:15px 5px 0px;    
+}
+.category-section .category-product-title{
+    padding-left: 7px;
+    font-size: 12px;
+}
+.showbtn{
+    color: green;
+    padding-top: 35px;
+    padding-left: 8px;
+    font-size: 12px;
+}
+
+.showbtn:hover{
+    color: red;
+}
+
+@media only screen and (max-width:800px) {
+    .container-fluid .carousel {
+        margin-top: -3.8%;
+        margin-left: -.99%;
+        margin-right: -.99%;
+        overflow: hidden;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        position: absolute;
+        bottom: 65%;
+        /* Adjust the percentage value as needed */
+
+    }
+
+    .carousel-control-prev {
+        position: absolute;
+        left: 10.5%;
+        /* Adjust the percentage value as needed */
+
+    }
+
+    .carousel-control-next {
+        position: absolute;
+        right: 10.5%;
+        /* Adjust the percentage value as needed */
+
+    }
+
+    .container-fluid .carousel .carousel-inner {
+        position: relative;
+        right: 25%;
+        width: 150%;
+        /* Set your desired width */
+        height: auto;
+        /* Maintain aspect ratio */
+        object-fit: cover;
+    }
+
+    .fa-chevron-left,
+    .fa-chevron-right {
+        font-size: 20px;
+        font-weight: bold;
+        color: rgb(118, 78, 2);
+    }
+
+    .row {
+        margin-top: -24%;
+    }
+}
