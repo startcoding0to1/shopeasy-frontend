@@ -1,0 +1,32 @@
+<h2>Results...</h2>
+<div class="container-fluid">
+    <div class="product-list row">
+        <div class="col-6 col-md-4 col-lg-3" *ngFor="let product of products let i=index">
+            <div class="card">
+                <div class="card-body">
+                    <div class="img-container">
+                        <div [class]='(product.quantity !=0)?"badge bg-success":"badge bg-danger"'>
+                            <div class="badge-text">{{(product.quantity !=0)?"In":"Out of"}}<br>Stock</div>
+                        </div>
+                        <img src="{{ product.img }}" alt="image">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div> {{product.id}}</div>
+                    <div> {{product.name}}</div>
+                    <div> {{product.price}}</div>
+                    <div class="buttons">
+                        <div class="heart-icon" (click)="addtoWishlist(i)"[addedToWishlist]="product.wishList"><i class="fas fa-heart"></i></div>
+                        <button class="btn btn-warning view mb-2 mt-2 "><span style="font-weight: 500;">View</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="button">
+        <button class="btn btn-success previous">&laquo; Previous</button>
+        <button class="btn btn-success next"> Next &raquo;</button>
+    </div>
+    <br><br>
+</div>

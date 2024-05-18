@@ -1,3 +1,6 @@
+.container-fluid{
+    
+}
 .carousel-control-prev,
 .carousel-control-next {
     position: absolute;
@@ -54,6 +57,7 @@
 
 .showbtn:hover{
     color: red;
+    cursor: pointer;
 }
 
 @media only screen and (max-width:800px) {
