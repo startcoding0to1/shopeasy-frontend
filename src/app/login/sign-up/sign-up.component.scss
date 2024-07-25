@@ -1,0 +1,45 @@
+.container-fluid{
+    padding-top: 50px;
+    padding-right: 0;
+}
+
+.container-fluid .block2{
+    padding-top: 0;
+    padding-right: 0;
+}
+
+.row{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.image1{
+    height: 100%;
+    width: 100%;
+}
+.card {
+    border: 0;
+    width: 100%;
+    padding: 20px 20px 0 20px;
+}
+.logo {
+    width: 75px;
+    height: 75px;
+}
+
+.form-check-input{
+    margin-left: 20px;
+}
+
+.requiredSymbol{
+    color: red;
+    font-weight: bold;
+}
+
+@media screen and (max-width:800px) {
+    .image1{
+        display: none;
+    }
+}

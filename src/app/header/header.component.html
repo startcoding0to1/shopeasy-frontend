@@ -1,87 +1,91 @@
-<!-- <div class="space"></div> -->
+<header>
 <div class="header shadow-sm fixed-top">
-  <div class="top-navbar">
-      <div class="container-fluid">
-          <div class="row">
-              <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
-                  <h5 class="brand-name">shopEasy</h5>
-              </div>
-              <div class="col-md-5 my-auto">
-                  <form role="search">
-                      <div class="input-group">
-                          <div ngbDropdown>
-                              <button type="button" class="btn btn-secondary" id="dd" ngbDropdownToggle style="border-radius: 4px 0 0 4px;">All</button>
-                              <div ngbDropdownMenu="dd">
-                                <div ngbDropdownItem>Men</div>
-                                <div ngbDropdownItem>Women</div>
-                                <div ngbDropdownItem>Kids</div>
+    <div class="top-navbar">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
+                    <h5 class="brand-name">shopEasy</h5>
+                </div>
+                <div class="col-md-5 my-auto">
+                    <form role="search">
+                        <div class="input-group">
+                            <div ngbDropdown>
+                                <button type="button" class="btn btn-secondary" id="dd" ngbDropdownToggle style="border-radius: 4px 0 0 4px;">All</button>
+                                <div ngbDropdownMenu="dd">
+                                  <div ngbDropdownItem>Men</div>
+                                  <div ngbDropdownItem>Women</div>
+                                  <div ngbDropdownItem>Kids</div>
+                                </div>
                               </div>
-                            </div>
-                          <input type="search" placeholder="Search your product" class="form-control">
-                          <button class="btn btn-warning" type="submit">
-                              <i class="fa fa-search"></i>
-                          </button>
-                      </div>
-                  </form>
-              </div>
-              <div class="col-md-5 my-auto">
-                  <ul class="nav justify-content-end">
-                      <li class="nav-item">
-                          <i class="fa fa-shopping-cart"></i> Cart (0)
-                      </li>
-                      <li class="nav-item">
-                          <i class="fa fa-heart"></i> Wishlist (0)
-                      </li>
-                      <li class="nav-item dropdown" ngbDropdown>
-                          <div *ngIf="false">
-                              <i class="fas fa-sign-in"></i> Sign in
-                          </div>
-                          <div *ngIf="true">
-                              <i class="fa fa-user"></i><span id="udd" ngbDropdownToggle> Username</span>
-                              <ul ngbDropdownMenu="udd">
-                                  <li ngbDropdownItem><i class="fas fa-user-circle"></i> Profile</li>
-                                  <li ngbDropdownItem><i class="fas fa-list"></i> My Orders</li>
-                                  <li ngbDropdownItem><i class="fas fa-heart"></i> My Wishlist</li>
-                                  <li ngbDropdownItem><i class="fas fa-shopping-cart"></i> My Cart</li>
-                                  <li ngbDropdownItem><i class="fas fa-sign-out-alt"></i> Log out</li>
-                              </ul>
-                          </div>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </div>
+                            <input type="search" placeholder="Search your product" class="form-control">
+                            <button class="btn btn-warning" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-5 my-auto">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                            <button class="btn-plain" [routerLink]="['/signIn']"><i class="fa fa-shopping-cart"></i> Cart (0)</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn-plain" type="button" (click)="logOut()"><i class="fa fa-heart"></i> Wishlist (0)</button>
+                        </li>
+                        <li *ngIf="!loginStatus" class="nav-item">
+                          <button class="btn-plain" [routerLink]="['/auth']"><i class="fas fa-sign-in"></i> Sign in</button>
+                        </li>
+                        <li *ngIf="loginStatus" class="nav-item dropdown" ngbDropdown>
+                          <button class="btn-plain" type="button"><i class="fa fa-user"></i><span id="udd" ngbDropdownToggle> Username</span></button>
+                          <ul ngbDropdownMenu="udd">
+                              <li ngbDropdownItem [routerLink]="['/profile']"><i class="fas fa-user-circle"></i> Profile</li>
+                              <li ngbDropdownItem><i class="fas fa-list"></i> My Orders</li>
+                              <li ngbDropdownItem><i class="fas fa-heart"></i> My Wishlist</li>
+                              <li ngbDropdownItem><i class="fas fa-shopping-cart"></i> My Cart</li>
+                              <li ngbDropdownItem>
+                                <button class="btn-plain" type="button" (click)="logOut()"><i class="fas fa-sign-out-alt"></i> Sign out</button>
+                              </li>
+                          </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg bg-warning">
+        <div class="container-fluid">
+            <a class="navbar-brand d-block d-sm-block d-md-none d-lg-none" href="#">
+                shopEasy
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapsedContent" aria-controls="navbarCollapsedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapsedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Home</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Home</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Home</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Home</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Home</a>
+                    </li> 
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div style="border: 1px solid red;"></div>
+    <div style="border: 1px solid white;"></div>
+    <div style="border: 1px solid green;"></div>
   </div>
-  <nav class="navbar navbar-expand-lg bg-warning">
-      <div class="container-fluid">
-          <a class="navbar-brand d-block d-sm-block d-md-none d-lg-none" href="#">
-              shopEasy
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapsedContent" aria-controls="navbarCollapsedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <i class="fas fa-bars"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapsedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                      <a class="nav-link" href="">Home</a>
-                  </li> 
-                  <li class="nav-item">
-                      <a class="nav-link" href="">Home</a>
-                  </li> 
-                  <li class="nav-item">
-                      <a class="nav-link" href="">Home</a>
-                  </li> 
-                  <li class="nav-item">
-                      <a class="nav-link" href="">Home</a>
-                  </li> 
-                  <li class="nav-item">
-                      <a class="nav-link" href="">Home</a>
-                  </li> 
-              </ul>
-          </div>
-      </div>
-  </nav>
-  <div style="border: 1px solid red;"></div>
-  <div style="border: 1px solid white;"></div>
-  <div style="border: 1px solid green;"></div>
-</div>
+</header>
+<main>
+ <app-home></app-home>
+</main>

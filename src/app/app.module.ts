@@ -4,26 +4,35 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SellerDashboardComponent } from './seller-dashboard/seller-dashboard.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserDetailsComponent } from './user-profile/user-details/user-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    LoginComponent,
     WishlistComponent,
-    DashboardComponent
+    DashboardComponent,
+    SellerDashboardComponent,
+    UserProfileComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
-  ],
+    NgbModule,
+    HttpClientModule,
+    ReactiveFormsModule
+   ],
   providers: [
-    provideClientHydration()
+    provideHttpClient(withFetch()), // Configure HttpClient to use fetch API
+    provideClientHydration() // Only needed for SSR
   ],
   bootstrap: [AppComponent]
 })
