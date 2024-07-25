@@ -1,0 +1,34 @@
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+    <!-- Success -->
+    <div class="Success-block" *ngIf="loginStatus;else failureBlock">
+        <p class="text-success">Continue as a . . .</p>
+        <div class="card d-flex flex-row justify-content-around pt-5">
+            <div *ngFor="let role of roles">
+                <button class="roles" [ngClass]="'Customer'==role?'btn btn-warning ':'btn btn-secondary'" (click)="navigateTo(role)">
+                    {{role}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Failure -->
+     <ng-template #failureBlock>
+        <div class="pt-5 failure-block">
+            <div class="card d-flex flex-column align-items-center justify-content-center">
+                <p class="text-danger">Login denied due to invalid credentials.</p>
+                <p class="pt-4"><a href="#">Forget Password</a></p>
+                <div class="d-flex flex-row justify-content-between pt-3">
+                    <div>
+                        <button type="button" class="btn btn-warning" [routerLink]="['/auth/signIn']">
+                            <i class="fas fa-redo-alt"></i> Try Again
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" [routerLink]="['/auth/signUp']" class="btn btn-secondary">
+                            <i class="fas fa-user-plus"></i> Sign Up
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </ng-template>
+</div>
