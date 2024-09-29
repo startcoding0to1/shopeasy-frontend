@@ -1,1 +1,113 @@
-<p>seller-dashboard works!</p>
+<header>
+    <div class="header shadow-sm fixed-top">
+        <div class="top-navbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
+                        <div class="d-flex flex-row justify-content-start brand-image-container">
+                            <div class="brand-image">
+                                <img class="rounded-circle img-fluid logo my-0" src=".\assets\logo.png" alt="shopEasy.logo">
+                            </div>
+                            <p class="brand-name pt-2 mt-1">shopEasy</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 my-auto">
+                        <form role="search">
+                            <div class="input-group">
+                                <div ngbDropdown>
+                                    <button type="button" class="btn btn-secondary" id="dd" ngbDropdownToggle style="border-radius: 4px 0 0 4px;">All</button>
+                                    <div ngbDropdownMenu="dd">
+                                      <div ngbDropdownItem>Men</div>
+                                      <div ngbDropdownItem>Women</div>
+                                      <div ngbDropdownItem>Kids</div>
+                                    </div>
+                                  </div>
+                                <input type="search" placeholder="Search your product" class="form-control">
+                                <button class="btn btn-warning" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="nav d-flex flex-row justify-content-end header-left-right-items">
+                            <li class="nav-item py-2">
+                                <button class="btn-plain" type="button"><i class="fas fa-tags"></i> Category (0)</button>
+                            </li>
+                            <li class="nav-item py-2">
+                                <button class="btn-plain" type="button"><i class="fas fa-box"></i> Products (0)</button>
+                            </li>
+                            <li *ngIf="!loginStatus" class="nav-item py-2 px-3">
+                                <button class="btn-plain" [routerLink]="['/auth']"><i class="fas fa-sign-in"></i> Sign in</button>
+                            </li>
+                            <li *ngIf="loginStatus" class="nav-item d-flex flex-row justify-content-around dropdown" ngbDropdown>
+                                <div class="py-2 px-1">
+                                    {{userName}}
+                                </div>
+                                <div class="profile-conatainer" id="udd" ngbDropdownToggle="false" >
+                                    <img class="profile-image rounded-circle" src=".\assets\440863287_393233740206250_5740516119634509630_n.jpg" alt="profile-img">
+                                </div>
+                                <ul ngbDropdownMenu="udd">
+                                    <li ngbDropdownItem>
+                                        <button class="btn-plain" type="button" [routerLink]="['/profile']"><i class="fas fa-user-circle"></i> View Profile</button>
+                                    </li>
+                                    <li ngbDropdownItem>
+                                        <button class="btn-plain" type="button" [routerLink]="['/customer-header']"><i class="fas fa-exchange-alt"></i> Switch to {{userRole | titlecase}}</button> 
+                                    </li>
+                                    <li ngbDropdownItem>
+                                      <button class="btn-plain" type="button" (click)="logOut()"><i class="fas fa-sign-out-alt"></i> Sign out</button>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg bg-warning">
+            <div class="container-fluid">
+                <a class="navbar-brand d-block d-sm-block d-md-none d-lg-none" href="#">
+                    <div class="d-flex justify-content-center brand-image">
+                        <div class="brand-image">
+                            <img class="rounded-circle img-fluid logo my-0" src=".\assets\logo.png" alt="shopEasy.logo">
+                        </div>
+                        <p class="brand-name pt-sm-2.5">shopEasy</p>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapsedContent" aria-controls="navbarCollapsedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarCollapsedContent">
+                    <div>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Home</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Home</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Home</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Home</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Home</a>
+                            </li> 
+                        </ul>
+                    </div>
+                    <div class="clock-conatiner fw-bold">
+                        <i class="fas fa-clock"></i>  {{ currentTime | date}}
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div style="border: 1px solid red;"></div>
+        <div style="border: 1px solid white;"></div>
+        <div style="border: 1px solid green;"></div>
+      </div>
+    </header>
+    <main>
+     <app-dashboard></app-dashboard>
+    </main>

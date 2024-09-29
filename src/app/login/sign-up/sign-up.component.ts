@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Roles } from '../../models/Roles';
+import { UserDTO } from '../../models/UserDTO';
+import { AuthService } from '../../_services/AuthService';
+import { LocalStorageService } from '../../_services/LocalStorageService';
+import { AuthResponse } from '../../models/AuthResponse';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,7 +13,12 @@ import { Roles } from '../../models/Roles';
   styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent implements OnInit{
-  public roles:Roles[] = [Roles.CUSTOMER,Roles.SELLER,Roles.ADMIN];
+  constructor(private formBuilder:FormBuilder,
+    private router:Router,
+    private activatedRoute:ActivatedRoute,
+    private authService:AuthService,
+    private localStorageService:LocalStorageService){}
+  public rolesArr:Roles[] = [Roles.CUSTOMER,Roles.SELLER,Roles.ADMIN];
   signUpForm:FormGroup = this.formBuilder.group({
     firstName : ['',[Validators.required,nameValidator]],
     lastName : ['',[Validators.required,nameValidator]],
@@ -23,12 +32,33 @@ export class SignUpComponent implements OnInit{
       admin: [{ value: false, disabled: true }]
     }, { validators: atLeastOneCheckboxValidator})
   });
-  constructor(private formBuilder:FormBuilder,private router:Router,private activatedRoute:ActivatedRoute){}
   
+  onSubmit(){
+    let formFields = this.signUpForm.value;
+    let userRoles :  Roles[] = Object.keys(formFields.roles).filter((role) => formFields.roles[role]).map((role) => {
+      let roleKey = role.toUpperCase() as keyof typeof Roles;
+      return Roles[roleKey];
+    });
+    let userDTO:UserDTO = new UserDTO('',formFields.firstName,formFields.lastName,formFields.phoneNumber,formFields.emailId,formFields.password,userRoles,'','','');
+    console.log(JSON.stringify(userDTO ))
+    this.authService.userRegister(userDTO).subscribe({
+      next:(response:any)=>{
+        let authResponse = new AuthResponse(response.message, response.userDTO, response.jwtToken);
+        this.router.navigate(['/auth/signIn','success']);
+       if (authResponse.getMessage === "User successfully registered.") {
+          this.localStorageService.setAuthResponse = authResponse;
+          this.router.navigate(['/auth/signIn','success']);
+        } else {
+          this.router.navigate(['/auth/signIn','failure']);
+        }
+      },
+      error: (err: any) => {
+        this.router.navigate(['/auth/signIn','failure']);
+      }
+    });
+  }
   ngOnInit(){
-      this.activatedRoute.paramMap.subscribe(param=>{
 
-      })
   }
 
   goBackToLogin(){

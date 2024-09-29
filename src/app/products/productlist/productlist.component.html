@@ -1,23 +1,25 @@
-<h2>Results...</h2>
 <div class="container-fluid">
     <div class="product-list row">
-        <div class="col-6 col-md-4 col-lg-3" *ngFor="let product of products let i=index">
+        <div class="col-6 col-md-4 col-lg-3" *ngFor="let product of paginatedProducts let i=index">            
             <div class="card">
                 <div class="card-body">
                     <div class="img-container">
                         <div [class]='(product.quantity !=0)?"badge bg-success":"badge bg-danger"'>
                             <div class="badge-text">{{(product.quantity !=0)?"In":"Out of"}}<br>Stock</div>
                         </div>
-                        <img src="{{ product.img }}" alt="image">
+                        <img src="{{product.imageUrl}}" alt="image">
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div> {{product.id}}</div>
-                    <div> {{product.name}}</div>
-                    <div> {{product.price}}</div>
+                    <div> {{product.productName}}</div>
+                    <div> {{product.discountPrice}}&#x20B9;<!--amount after discount-->
+                        &nbsp;(<strong style="font-family: Arial, sans-serif;">{{calCulatePercentage(product.prodPrice,product.discountPrice)}}% OFF</strong>)
+                    </div>
+                    <div>MRP: <span style="text-decoration: line-through;">{{product.prodPrice}}&#x20B9;</span> </div>
+                    <span *ngFor="let s of counter(product.rating)">⭐</span>
                     <div class="buttons">
-                        <div class="heart-icon" (click)="addtoWishlist(i)"[addedToWishlist]="product.wishList"><i class="fas fa-heart"></i></div>
-                        <button class="btn btn-warning view mb-2 mt-2 "><span style="font-weight: 500;">View</span></button>
+                        <div class="heart-icon" (click)="updateWishlist(product.productId)"[addedToWishlist]="checkWishlist(product.productId)"><i class="fas fa-heart"></i></div>
+                        <button class="btn btn-warning view mb-2 mt-2 " (click)="navigateTodisplayProductdetails(product)"><span style="font-weight: 500;">View</span></button>
                     </div>
                 </div>
             </div>
@@ -25,8 +27,8 @@
     </div>
     <br><br>
     <div class="button">
-        <button class="btn btn-success previous">&laquo; Previous</button>
-        <button class="btn btn-success next"> Next &raquo;</button>
+        <button class="btn btn-success previous" (click)="previousPage()" [disabled]="currentPage === 1">&laquo; Previous</button>
+        <button class="btn btn-success next" (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= products.length"> Next &raquo;</button>
     </div>
     <br><br>
 </div>

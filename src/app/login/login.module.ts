@@ -6,6 +6,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginRoutingModule } from './login-routing.module';
 import { EmailValidatorDirective } from './email-validator.directive';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 
@@ -14,7 +15,8 @@ import { EmailValidatorDirective } from './email-validator.directive';
     LoginComponent,
     LoginResultComponent,
     SignUpComponent,
-    EmailValidatorDirective
+    EmailValidatorDirective,
+    SignInComponent
   ],
   imports: [
     CommonModule,

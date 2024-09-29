@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <div class="cover-photo d-flex justify-content-around">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <div class="pt-lg-1 pt-sm-0">
+                <img class="profile-image rounded-circle" src=".\assets\440863287_393233740206250_5740516119634509630_n.jpg" alt="profile-img">
+            </div>
+            <div>
+                <p class="userName">{{userName}}</p>
+            </div>
+        </div>
+        <div class="user-contents">
+            <div class="user-content">
+                <button class="btn-plain" type="button"><i class="fas fa-tags"></i> Category  ( {{categoryCount}} )</button>
+            </div>
+            <div class="user-content">
+                <button class="btn-plain" type="button"><i class="fas fa-box"></i> Products ( {{productsCount}} )</button>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mt-1">
+        <div class="d-flex flex-row justify-content-between card-text">
+            <div>
+                <i class="fas fa-user-circle"></i> Profile
+            </div>
+            <div (click)="isToggled=!isToggled; toggleSpace(isToggled ? 'Profile': '')" class="open">
+                open&nbsp;<i class="fas fa-arrow-down"></i>
+            </div>
+        </div>
+    </div>
+    <div class="empty-space card" style="height: 500px;" [hidden]="spaceControl==='Profile'?false:true">
+        <app-seller-details></app-seller-details>
+    </div>
+    <div class="card shadow mt-1">
+        <div class="d-flex flex-row justify-content-between card-text">
+            <div>
+                <i class="fas fa-list"></i> My Orders
+            </div>
+            <div class="open">
+                open&nbsp;<i class="fas fa-arrow-down"></i>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mt-1">
+        <div class="d-flex flex-row justify-content-between card-text">
+            <div>
+                <i class="fas fa-heart"></i> My Wishlist
+            </div>
+            <div class="open">
+                open&nbsp;<i class="fas fa-arrow-down"></i>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mt-1">
+        <div class="d-flex flex-row justify-content-between card-text">
+            <div>
+                <i class="fas fa-shopping-cart"></i> My Cart
+            </div>
+            <div class="open">
+                open&nbsp;<i class="fas fa-arrow-down"></i>
+            </div>
+        </div>
+    </div>
+</div>

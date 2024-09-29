@@ -10,7 +10,7 @@
                 <img class="rounded-circle img-fluid logo my-0" src=".\assets\logo.png" alt="shopEasy.logo">
             </div>
             <div class="pt-5 card">
-                <form [formGroup]="signUpForm" class="row">
+                <form [formGroup]="signUpForm" class="row" (ngSubmit)="onSubmit()">
                     <div class="form-group col-lg-6 col-12">
                         <label for="firstName" class="form-label">First Name<span class="requiredSymbol">&nbsp;*</span></label>
                         <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Enter your first name">
@@ -82,11 +82,11 @@
                     </div>
                     <div class="form-group col-lg-6 col-12 pt-3" formGroupName="roles">
                         <div>Roles<span class="requiredSymbol">&nbsp;*</span></div>&nbsp;
-                        <label for="customer" class="form-label">{{roles[0]}}</label>
+                        <label for="customer" class="form-label">{{rolesArr[0] | titlecase}}</label>
                         <input type="checkbox" id="customer" formControlName="customer" class="form-check-input">&nbsp;
-                        <label for="seller" class="form-label">{{roles[1]}}</label>
+                        <label for="seller" class="form-label">{{rolesArr[1] | titlecase}}</label>
                         <input type="checkbox" id="seller" formControlName="seller" class="form-check-input">&nbsp;
-                        <label for="admin" class="form-label">{{roles[2]}}</label>
+                        <label for="admin" class="form-label">{{rolesArr[2] | titlecase}}</label>
                         <input type="checkbox" id="admin" formControlName="admin" class="form-check-input">&nbsp;
                         <div *ngIf="signUpForm.controls['roles'].touched && signUpForm.controls['roles'].errors">
                             <div *ngIf="signUpForm.controls['roles'].errors['atLeastOneCheckboxRequired']" class="text-danger">
@@ -96,7 +96,7 @@
                     </div>
                     <div class="form-group col-lg-6 col-12 pt-3">
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-warning btn-block my-2">SingUp</button>
+                            <button type="submit" class="btn btn-warning btn-block my-2" [disabled]=signUpForm.invalid>SingUp</button>
                         </div>
                     </div>
                 </form>

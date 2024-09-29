@@ -1,0 +1,19 @@
+.container{
+    margin: 0;
+}
+.product-image{
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+.button-container{
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.card{
+    width: 100%;
+    border-radius: 0;
+    margin-bottom: 10px;
+}

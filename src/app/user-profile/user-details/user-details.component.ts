@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Roles } from '../../models/Roles';
 import { UserDTO } from '../../models/UserDTO';
+import { LocalStorageService } from '../../_services/LocalStorageService';
+import { UserService } from '../../_services/UserService';
 
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.scss'
 })
-export class UserDetailsComponent {
-  userDetails:UserDTO = new UserDTO('1','Mahammad Khairuddin','Khadergari Shaik',6398554278,'abcd_232@getMaxListeners.com','',new Set<Roles>([Roles.CUSTOMER]),'','');;
+export class UserDetailsComponent implements OnInit{
+  userDto=this.localStorage.getUserDetails;
+  userDetails:UserDTO=this.userDto!==null?this.userDto:new UserDTO('1','Mahammad Khairuddin','Khadergari Shaik',6398554278,'khairu@gmail.com','',[Roles.CUSTOMER],'','','');;
   public roles:Roles[] = [Roles.CUSTOMER,Roles.SELLER,Roles.ADMIN];
-  btnToggler:boolean=false;
-  formControlToggler:boolean=!this.btnToggler;
-  signUpForm:FormGroup = this.formBuilder.group({
+  btnToggler:boolean=true;
+  successMessage!:string;
+  editedForm:FormGroup = this.formBuilder.group({
     firstName : [this.userDetails.getUserFirstName,[Validators.required,nameValidator]],
     lastName : [this.userDetails.getUserLastName,[Validators.required,nameValidator]],
     emailId : [this.userDetails.getUserEmail,[Validators.required,emailIdValidator]],
@@ -27,7 +30,34 @@ export class UserDetailsComponent {
       admin: [{ value: false, disabled: true }]
     }, { validators: atLeastOneCheckboxValidator})
   });
-  constructor(private formBuilder:FormBuilder,private router:Router,private activatedRoute:ActivatedRoute){}
+  constructor(
+    private formBuilder:FormBuilder,
+    private router:Router,
+    private activatedRoute:ActivatedRoute,
+    private localStorage:LocalStorageService,
+    private userService:UserService
+  ){}
+  
+  ngOnInit(): void {
+  }
+
+  updateUserDetails(){
+    if(this.btnToggler && this.userDetails!==null){
+      let formFields = this.editedForm.value;
+      let userDto:UserDTO = new UserDTO(this.userDetails.getUserId,formFields.firstName,formFields.lastName,formFields.phoneNumber,formFields.emailId,formFields.password,this.userDetails.getRoles,this.userDetails.getProfilePic,'','');
+      this.userService.updateUserDetails(userDto);
+      this.userService.updateUserDetails(userDto).subscribe({
+        next:(response:any)=>{
+          this.localStorage.setUserDetails=userDto;
+          this.successMessage = response.message;
+        },
+        error:(error:any)=>{
+          console.log(error);
+        }  
+      });
+    }
+    this.successMessage='';
+  }
 }
 
 function phoneValidator(phoneNumber:FormControl):any{
@@ -79,15 +109,6 @@ function passwordValidator(pwd:FormControl){
     }
   }
 }
-
-//FYI
-// ^: Asserts the start of the string.
-// (?=.*[a-z]): Asserts that there is at least one lowercase letter.
-// (?=.*[A-Z]): Asserts that there is at least one uppercase letter.
-// (?=.*\d): Asserts that there is at least one digit.
-// (?=.*[@$!%*?&]): Asserts that there is at least one special character.
-// [A-Za-z\d@$!%*?&]{8,}: Matches any combination of the allowed characters (uppercase, lowercase, digit, special character) with a minimum length of 8 characters.
-// $: Asserts the end of the string.
 
 function atLeastOneCheckboxValidator(control: AbstractControl): ValidationErrors | null {
   const controls = (control as FormGroup).controls;

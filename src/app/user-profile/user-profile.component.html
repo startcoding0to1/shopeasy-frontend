@@ -1,66 +1,91 @@
-<div class="container-fluid">
-    <div class="cover-photo d-flex justify-content-around">
-        <div class="d-flex flex-column align-items-center justify-content-center">
-            <div class="pt-lg-1 pt-sm-0">
-                <img class="profile-image rounded-circle" src=".\assets\440863287_393233740206250_5740516119634509630_n.jpg" alt="profile-img">
-            </div>
-            <div>
-                <p class="userName">{{userName}}</p>
-            </div>
+<div class="cover-photo d-flex justify-content-around">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="pt-lg-1 pt-sm-0">
+            <form #photoForm="ngForm">
+                <div class="form-group box">
+                    <img #profileImage
+                        class="profile-image rounded-circle"
+                        [src]="profilePic"
+                        alt="profile-img"
+                        data-bs-content=''
+                        (mouseenter)="showPopover()"
+                        >
+                    <div class="popUp d-flex align-items-center" *ngIf="isVisible" (mouseleave)="hidePopover()">
+                        <div class="" style="border: 2px solid white; background-color: white; border-radius: 5px;">
+                            <button type="button" class="btn btn-primary btn-sm  my-2 mx-3">
+                            <input type="file" id="photo" (change)="onFileSelected($event)" accept="image/*" class="form-control" style="display: none;">                    
+                            <label for="photo" style="cursor: pointer;">
+                            Upload 
+                            </label>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm my-2 mx-3" (click)="removePhoto()">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="user-contents">
-            <div class="user-content">
-                <i class="fa fa-shopping-cart"></i> Cart ( {{cartCount}} )
-            </div>
-            <div class="user-content">
-                <i class="fa fa-heart"></i> Wishlist ( {{wishListCount}} )
-            </div>
-            <div class="user-content">
-                <i class="fas fa-list"></i> Orders ( {{odersCount}} )
-            </div>
-        </div>
-    </div>
-    <div class="card shadow mt-1">
-        <div class="d-flex flex-row justify-content-between card-text">
-            <div>
-                <i class="fas fa-user-circle"></i> Profile
-            </div>
-            <div (click)="isToggled=!isToggled; toggleSpace(isToggled ? 'Profile': '')" class="open">
-                open&nbsp;<i class="fas fa-arrow-down"></i>
-            </div>
+        <div>
+            <p class="userName">{{userName}}</p>
         </div>
     </div>
-    <div class="empty-space card" style="height: 500px;" [hidden]="spaceControl==='Profile'?false:true">
-        <app-user-details></app-user-details>
-    </div>
-    <div class="card shadow mt-1">
-        <div class="d-flex flex-row justify-content-between card-text">
-            <div>
-                <i class="fas fa-list"></i> My Orders
-            </div>
-            <div class="open">
-                open&nbsp;<i class="fas fa-arrow-down"></i>
-            </div>
+    <div class="user-contents">
+        <div class="user-content">
+            <i class="fa fa-shopping-cart"></i> Cart ( {{cartCount}} )
+        </div>
+        <div class="user-content">
+            <i class="fa fa-heart"></i> Wishlist ( {{wishListCount}} )
+        </div>
+        <div class="user-content">
+            <i class="fas fa-list"></i> Orders ( {{odersCount}} )
         </div>
     </div>
-    <div class="card shadow mt-1">
-        <div class="d-flex flex-row justify-content-between card-text">
-            <div>
-                <i class="fas fa-heart"></i> My Wishlist
-            </div>
-            <div class="open">
-                open&nbsp;<i class="fas fa-arrow-down"></i>
-            </div>
+</div>
+<div class="card shadow mt-1">
+    <div class="d-flex flex-row justify-content-between card-text">
+        <div>
+            <i class="fas fa-user-circle"></i> Profile
+        </div>
+        <div (click)="isToggled=!isToggled; toggleSpace(isToggled ? 'Profile': '')" class="open">
+            open&nbsp;<i class="fas fa-arrow-down"></i>
         </div>
     </div>
-    <div class="card shadow mt-1">
-        <div class="d-flex flex-row justify-content-between card-text">
-            <div>
-                <i class="fas fa-shopping-cart"></i> My Cart
-            </div>
-            <div class="open">
-                open&nbsp;<i class="fas fa-arrow-down"></i>
-            </div>
+</div>
+<div class="empty-space card" [hidden]="spaceControl==='Profile'?false:true">
+    <app-user-details></app-user-details>
+</div>
+<div class="card shadow mt-1">
+    <div class="d-flex flex-row justify-content-between card-text">
+        <div>
+            <i class="fas fa-list"></i> My Orders
+        </div>
+        <div class="open">
+            open&nbsp;<i class="fas fa-arrow-down"></i>
         </div>
     </div>
+</div>
+<div class="card shadow mt-1">
+    <div class="d-flex flex-row justify-content-between card-text">
+        <div>
+            <i class="fas fa-heart"></i> My Wishlist
+        </div>
+        <div (click)="isToggled=!isToggled; toggleSpace(isToggled ? 'My Wishlist':'')" class="open">
+            open&nbsp;<i class="fas fa-arrow-down"></i>
+        </div>
+    </div>
+</div>
+<div class="card card-data" [hidden]="spaceControl==='My Wishlist'?false:true">
+    <app-wishlist></app-wishlist>
+</div>
+<div class="card shadow mt-1">
+    <div class="d-flex flex-row justify-content-between card-text">
+        <div>
+            <i class="fas fa-shopping-cart"></i> My Cart
+        </div>
+        <div (click)="isToggled=!isToggled; toggleSpace(isToggled ? 'My Cart':'')" class="open">
+            open&nbsp;<i class="fas fa-arrow-down"></i>
+        </div>
+    </div>
+</div>
+<div class="card card-data" [hidden]="spaceControl==='My Cart'?false:true">
+    <app-my-cart (orderTobePlaced)="proceedToPlaceOrder($event)"></app-my-cart>
 </div>

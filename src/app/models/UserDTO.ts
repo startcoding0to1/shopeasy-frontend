@@ -8,7 +8,8 @@ export class UserDTO {
         private phoneNumber: number,
         private userEmail: string,
         private userPassword: string,
-        private roles: Set<Roles>,
+        private roles: Roles[],
+        private profilepic: string,
         private creationTime: string,
         private lastUpdateTime: string
       ) {
@@ -19,6 +20,7 @@ export class UserDTO {
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.roles = roles;
+        this.profilepic=profilepic;
         this.creationTime = creationTime;
         this.lastUpdateTime = lastUpdateTime;
       }
@@ -71,11 +73,11 @@ export class UserDTO {
         this.userPassword = value;
     }
 
-    public get getRoles(): Set<Roles> {
+    public get getRoles(): Roles [] {
         return this.roles;
     }
 
-    public set setRoles(value: Set<Roles>) {
+    public set setRoles(value: Roles[]) {
         this.roles = value;
     }
 
@@ -93,5 +95,13 @@ export class UserDTO {
 
     public set setLastUpdateTime(value: string) {
         this.lastUpdateTime = value;
+    }
+
+    public set setProfilePic(img:string){
+        this.profilepic = img;
+    }
+
+    public get getProfilePic():string{
+        return this.profilepic;
     }
 }

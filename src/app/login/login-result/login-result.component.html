@@ -4,8 +4,8 @@
         <p class="text-success">Continue as a . . .</p>
         <div class="card d-flex flex-row justify-content-around pt-5">
             <div *ngFor="let role of roles">
-                <button class="roles" [ngClass]="'Customer'==role?'btn btn-warning ':'btn btn-secondary'" (click)="navigateTo(role)">
-                    {{role}}
+                <button class="roles" [ngClass]="'CUSTOMER'==role?'btn btn-warning ':'btn btn-secondary'" (click)="navigateTo(role)">
+                    {{role | titlecase}}
                 </button>
             </div>
         </div>

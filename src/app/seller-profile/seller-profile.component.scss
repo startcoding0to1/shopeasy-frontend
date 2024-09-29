@@ -1,0 +1,53 @@
+.container-fluid{
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+.cover-photo{
+    background-image: url(https://freerangestock.com/sample/37396/space-background.jpg);
+    position: relative;
+}
+.profile-image{
+    border: 2px solid whitesmoke;
+    height: 150px;
+    margin: 10px;
+}
+.user-contents{
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    font-size: x-large;
+}
+.user-content{
+    color: whitesmoke;
+    margin: 0 80px;
+    font-weight: 500;
+    
+}
+.userName{
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: x-large;
+}
+.card{
+    border-radius: 0;
+    border-top: 0;
+    border: 2px solid white;
+    margin: 30px 10px;
+    background-color: white;
+}
+.card-text{
+    padding: 40px 20px 8px 25px;
+    font-weight: 500;
+}
+.open{
+    cursor: pointer;
+}
+@media only screen and (max-width: 770px){
+    .profile-image{
+        height: 70px;
+        margin: 5px;
+    }
+}

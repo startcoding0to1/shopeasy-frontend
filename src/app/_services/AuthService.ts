@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
 import { AuthRequest } from "../models/AuthRequest";
 import { Injectable } from "@angular/core";
+import { UserDTO } from "../models/UserDTO";
 
 @Injectable({
     providedIn:'root'
@@ -13,7 +14,20 @@ export class AuthService{
     constructor(private httpClient:HttpClient){}
 
     public userAuthentication(authRequest:AuthRequest):Observable<any>{
-        const response:Observable<any> = this.httpClient.post<any>(this.baseUrl+"/login",authRequest,{headers:this.headers});
-        return response;
+        return this.httpClient.post<any>(this.baseUrl+"/login",authRequest,{headers:this.headers}).pipe(
+            catchError(error=>{
+                console.log('Error occurred while user register:',error);
+                return throwError(() => error);
+            })
+        );
+       
+    }
+    public userRegister(userDTO:UserDTO){
+        return this.httpClient.post<Observable<any>>(this.baseUrl+"/register",userDTO,{headers:this.headers}).pipe(
+            catchError(error=>{
+                console.log('Error occurred while user register:',error);
+                return throwError(() => error);
+            })
+        );
     }
 }

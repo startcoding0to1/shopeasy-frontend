@@ -45,6 +45,35 @@
 .open{
     cursor: pointer;
 }
+.box{
+    position: relative;
+}
+.popUp{
+    position: absolute;
+    top: 40px;
+    width: 100px;
+    height: 100px;
+    right: -100px;
+    padding-left: 10px;
+}
+.popUp::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -40px; /* Position the arrow to the left of the pop-up */
+    border-width: 30px; /* Size of the arrow */
+    border-style: solid;
+    border-color: transparent white transparent transparent; /* Arrow color */
+    transform: translateY(-50%); /* Center the arrow vertically */
+  }
+  .btn{
+    border-color: black ;
+  }
+
+  .card-data{
+    overflow: scroll;
+  }
+ 
 @media only screen and (max-width: 770px){
     .profile-image{
         height: 70px;

@@ -1,0 +1,56 @@
+.container-fluid{
+    padding-top: 50px;
+    padding-right: 0;
+}
+.row{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image1{
+    height: auto;
+    width: 80%;
+}
+.logo {
+    width: 75px;
+    height: 75px;
+}
+.container-content1{
+    width: 50%;
+}
+.container-content1, .container-content2,.container-content3{
+    padding-top: 60px;
+}
+.container-content1{
+    display: flex;
+    justify-content: center;
+}
+.container-content2{
+    width: 50%;
+}
+.container-content3{
+    width: 50%;
+}
+.container-content{
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.forn-group{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+.form-control{
+    width: 50%;
+    border-radius: 0;
+    border-color: black;
+}
+.goBack{
+    margin-top: 100px;
+}
+.is-invalid {
+    border-color: red;
+}

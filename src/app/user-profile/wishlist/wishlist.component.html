@@ -1,0 +1,49 @@
+<table *ngFor="let product of products let i=index" style="width: 100%;" class="card">
+    <tr class="row mx-0">
+        <td class="col-lg-3 d-flex justify-content-center">
+            <img class="product-image" src="{{product.imageUrl}}" alt="">
+        </td>
+        <td class="col-lg-6 d-flex align-items-center justify-content-center">
+            <table class="table">
+                <tr>
+                    <td>
+                        <strong>Name</strong> 
+                    </td>
+                    <td>
+                        : {{product.productName}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Brand</strong> 
+                    </td>
+                    <td>
+                        : {{product.brand}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Price</strong> 
+                    </td>
+                    <td>
+                        : {{product.discountPrice}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Size</strong> 
+                    </td>
+                    <td>
+                        : {{product.productSize}}
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td class="col-lg-3">
+            <div class="button-container">
+                <button class="btn btn-warning btn-md" (click)="updateCart(product.productId)" [disabled]="product.quantity<1">{{!checkCartItems(product.productId)?(product.quantity>=1?'Add To Cart':'Not available'):'Remove from Cart'}}</button>
+                <button class="btn btn-secondary btn-md" (click)="removeWishlistItem(product.productId)">Remove</button>
+            </div>
+        </td>
+    </tr>
+</table>

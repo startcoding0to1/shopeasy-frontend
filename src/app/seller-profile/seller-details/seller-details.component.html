@@ -1,0 +1,96 @@
+
+<div class="container-fluid">
+    <div class="pt-5 card">
+        <form [formGroup]="signUpForm" class="row">
+            <div class="form-group col-lg-6 col-12">
+                <label for="firstName" class="form-label">First Name<span class="requiredSymbol">&nbsp;*</span></label>
+                <input type="text" class="form-control" id="firstName" formControlName="firstName" 
+                placeholder="Enter your first name" readonly>
+                <div *ngIf="signUpForm.controls['firstName'].touched && signUpForm.controls['firstName'].errors" class="text-danger">
+                    <p *ngIf="signUpForm.controls['firstName'].errors['required']">
+                        First name is required
+                    </p>
+                    <p *ngIf="signUpForm.controls['firstName'].errors['nameError']">
+                        {{signUpForm.controls['firstName'].errors['nameError'].message}}
+                    </p>
+                </div>
+            </div>
+            <div class="form-group col-lg-6 col-12">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Enter your last name">
+                <div *ngIf="signUpForm.controls['lastName'].touched && signUpForm.controls['lastName'].errors">
+                    <p *ngIf="signUpForm.controls['lastName'].errors['nameError']" class="text-danger">
+                        Last name is invalid
+                    </p>
+                </div>
+            </div>
+            <div class="form-group col-lg-6 col-12">
+                <label for="emailId" class="form-label">Email Id<span class="requiredSymbol">&nbsp;*</span></label>
+                <input type="text" class="form-control" id="emailId" formControlName="emailId" placeholder="Enter your email Id">
+                <div *ngIf="signUpForm.controls['emailId'].touched && signUpForm.controls['emailId'].errors" class="text-danger">
+                    <p *ngIf="signUpForm.controls['emailId'].errors['required']">
+                        Email Id is required
+                    </p>
+                    <p *ngIf="signUpForm.controls['emailId'].errors['emailIdError']">
+                        {{signUpForm.controls['emailId'].errors['emailIdError'].message}}
+                    </p>
+                </div>
+            </div>
+            <div class="form-group col-lg-6 col-12">
+                <label for="phNo" class="form-label">Phone Number<span class="requiredSymbol">&nbsp;*</span></label>
+                <input type="tel" class="form-control" id="phNo" formControlName="phoneNumber" placeholder="Enter your phone number">
+                <div *ngIf="signUpForm.controls['phoneNumber'].touched && signUpForm.controls['phoneNumber'].errors" class="text-danger">
+                    <p *ngIf="signUpForm.controls['phoneNumber'].errors['required']">
+                        Phone number is required
+                    </p>
+                    <p *ngIf="signUpForm.controls['phoneNumber'].errors['phoneNumberError']">
+                        {{signUpForm.controls['phoneNumber'].errors['phoneNumberError'].message}}
+                    </p>
+                </div>
+            </div>
+            <div class="form-group col-lg-6 col-12">
+                <label for="pwd" class="form-label">Password<span class="requiredSymbol">&nbsp;*</span></label>
+                <input type="password" class="form-control" id="pwd" formControlName="password" placeholder="Enter the password">
+                <div *ngIf="signUpForm.controls['password'].touched && signUpForm.controls['password'].errors" class="text-danger">
+                    <p *ngIf="signUpForm.controls['password'].errors['required']">
+                        Password is required
+                    </p>
+                    <p *ngIf="signUpForm.controls['password'].errors['passwordError']">
+                        {{signUpForm.controls['password'].errors['passwordError'].message}}
+                    </p>
+                </div>
+            </div>
+            <div class="form-group col-lg-6 col-12">
+                <label for="confirmPwd" class="form-label">Confirm Password<span class="requiredSymbol">&nbsp;*</span></label>
+                <input type="password" class="form-control" id="confirmPwd" formControlName="confirmPassword" placeholder="Enter the confirm password">
+                <div *ngIf="signUpForm.controls['confirmPassword'].touched && signUpForm.controls['confirmPassword'].errors" class="text-danger">
+                    <p *ngIf="signUpForm.controls['confirmPassword'].errors['required']">
+                        Confirm Password is required
+                    </p>
+                    <p *ngIf="signUpForm.controls['confirmPassword'].errors['confirmPwdError']">
+                        {{signUpForm.controls['confirmPassword'].errors['confirmPwdError'].message}}
+                    </p>
+                </div>
+            </div>
+            <div class="form-group col-lg-6 col-12 pt-3" formGroupName="roles">
+                <div class="form-label">Roles<span class="requiredSymbol">&nbsp;*</span></div>&nbsp;
+                <label for="customer" class="form-label roles">{{roles[0]}}</label>
+                <input type="checkbox" id="customer" formControlName="customer" class="form-check-input">&nbsp;
+                <label for="seller" class="form-label roles">{{roles[1]}}</label>
+                <input type="checkbox" id="seller" formControlName="seller" class="form-check-input">&nbsp;
+                <label for="admin" class="form-label roles">{{roles[2]}}</label>
+                <input type="checkbox" id="admin" formControlName="admin" class="form-check-input">&nbsp;
+                <div *ngIf="signUpForm.controls['roles'].touched && signUpForm.controls['roles'].errors">
+                    <div *ngIf="signUpForm.controls['roles'].errors['atLeastOneCheckboxRequired']" class="text-danger">
+                        {{signUpForm.controls['roles'].errors['atLeastOneCheckboxRequired'].message}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-lg-6 col-12 pt-3">
+                <div class="d-grid">
+                    <button type="!btnToggler?submit:''" class="btn btn-warning btn-block my-2" (click)='btnToggler=!btnToggler;formControlToggler=btnToggler'>{{btnToggler?'Edit':'Save'}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

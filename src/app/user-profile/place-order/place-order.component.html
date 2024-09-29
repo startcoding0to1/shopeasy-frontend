@@ -1,0 +1,60 @@
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-lg-6 block1">
+            <img class="image1"
+                src="https://img.freepik.com/premium-photo/shopping-cart-full-shopping-bag-white-background_693425-26890.jpg"
+                alt="shopEasy">
+        </div>
+        <div class="col-12 col-lg-6 block2 d-flex flex-column align-items-center justify-content-center" *ngIf="!otpFlag; else displayMessage">
+            <div class="d-flex justify-content-center">
+                <img class="rounded-circle img-fluid logo my-0" src="./assets/logo.png" alt="shopEasy.logo">
+            </div>
+            <div class="container-content1">
+                Total Price : {{customerOrderDTO?.totalPrice}}
+            </div>
+            <form #otpForm="ngForm" (ngSubmit)="Onsubmit(otpForm)" class="d-flex justify-content-around container-content2">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="dig1" id="dig1" ngModel (input)="moveToNext(dig1, dig2)" maxlength="1" #dig1 autocomplete="off" required pattern="[0-9]*">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="dig2" id="dig2"  ngModel (input)="moveToNext(dig2, dig3)" maxlength="1" #dig2 autocomplete="off" required pattern="[0-9]*">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="dig3" id="dig3"  ngModel (input)="moveToNext(dig3, dig4)" maxlength="1" #dig3 autocomplete="off" required pattern="[0-9]*">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="dig4" id="dig4"  ngModel (input)="moveToNext(dig4)" maxlength="1" #dig4 autocomplete="off" required pattern="[0-9]*">
+                </div>
+                <div class="form-group">  
+                    <button type="submit" class="btn btn-secondary btn-sm" [disabled]="">Verify</button>
+                </div>
+            </form>
+            <div class="d-flex justify-content-around container-content3 flex-column">
+                <div class="flex-grow-1 text-center">
+                    OTP sent, please check...
+                </div>
+                <div class="text-center pt-4">
+                    <button type="button" class="btn btn-warning btn-sm" (click)="sendOTP()">Resend</button>
+                </div>
+            </div>
+            <div class="goBack">
+                <button type="button" (click)="goBack()" class="btn btn-secondary btn-md">Go Back</button>
+            </div>
+        </div>
+        <ng-template #displayMessage>
+            <div class="col-12 col-lg-6 block2 d-flex flex-column align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <img class="rounded-circle img-fluid logo my-0" src="./assets/logo.png" alt="shopEasy.logo">
+                </div>
+                <div class="container-content">
+                    {{message}}
+                </div>
+                <div>
+                    <button type="button" class="btn btn-success">Pay: &nbsp;&#8377;{{customerOrderDTO?.totalPrice}}</button>
+                </div>
+            </div>
+        </ng-template>    
+    </div>
+</div>

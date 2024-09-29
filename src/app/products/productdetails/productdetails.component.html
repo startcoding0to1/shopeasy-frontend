@@ -1,1 +1,126 @@
-<p>productdetails works!</p>
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <div class="d-flex">
+                <div class="flex-fill image-container">
+                    <div [class]="(product.quantity !=0)?'badge bg-success':'badge bg-danger'">
+                        <div class="badge-text">
+                            <span>{{product.quantity !=0 ? "In ":"Out of "}}<br>Stock</span>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="{{product.imageUrl}}" class="image" alt="">
+                    </div>
+                </div>
+                <div class="flex-fill d-flex justify-content-around align-items-center">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <strong>Name </strong>
+                            </td>
+                            <td>
+                                : {{product.productName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Brand </strong>                                 
+                            </td>
+                            <td>
+                                : {{product.brand}} 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>M.R.P</strong> 
+                            </td>
+                            <td>
+                                : {{product.prodPrice}}&#x20B9;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Price after discount </strong>
+                            </td>
+                            <td>
+                                : {{product.discountPrice}}&#x20B9;
+                                <strong style="font-family: Arial, sans-serif;">{{percentage}}% OFF</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Size</strong> 
+                            </td>
+                            <td>
+                                : {{product.productSize}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Category</strong>
+                            </td>
+                            <td>
+                                : {{product.prodCategory}} 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               <strong>Sub Category</strong>
+                            </td>
+                            <td>
+                                : {{product.prodSubCategory}}
+                            </td>
+                        </tr>
+                        <!-- <tr>
+                            <td>
+                                <strong>Quanity</strong> 
+                            </td>
+                            <td>
+                                : {{product.quantity}}
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <td>
+                                <strong>Rating </strong>
+                            </td>
+                            <td>
+                                <span *ngFor="let s of rating">⭐</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Total Reviews</strong> 
+                            </td>
+                            <td>
+                                : {{product.totalReviews}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Description</strong> 
+                            </td>
+                            <td>
+                                : {{product.productDesc}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Availability</strong> 
+                            </td>
+                            <td>
+                                : {{product.prodAvailability}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="d-flex flex-row justify-content-between">
+                <button class="btn btn-warning" (click)="updateCart(product.productId)" [disabled]="product.quantity<1">{{!toggler?(product.quantity>=1?'Add To Cart':'Not available'):'Remove from Cart'}}</button>
+                <div><strong>Happy to see you here...</strong></div>
+                <button class="btn btn-secondary" [routerLink]="['/products']">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
